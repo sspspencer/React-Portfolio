@@ -4,40 +4,24 @@ import About from "./components/About";
 import ContactForm from "./components/Contact";
 import Resume from "./components/Resume";
 import Portfolio from "./components/Portfolio";
+import Footer from "./components/Footer";
 
 function App() {
-  const [contactSelected, setContactSelected] = useState(false);
-  const [portfolioSelected, setPortfolioSelected] = useState(false);
-  const [resumeSelected, setResumeSelected] = useState(false);
+  const [navActiveSelected, setNavActiveSelected] = useState("about");
+
   return (
     <div>
       <Nav
-        resumeSelected={resumeSelected}
-        setResumeSelected={setResumeSelected}
-        portfolioSelected={portfolioSelected}
-        setPortfolioSelected={setPortfolioSelected}
-        contactSelected={contactSelected}
-        setContactSelected={setContactSelected}
+        navActiveSelected={navActiveSelected}
+        setNavActiveSelected={setNavActiveSelected}
       ></Nav>
       <main>
-        {(function () {
-          if (!contactSelected && !portfolioSelected && !resumeSelected) {
-            return <About></About>;
-          } else {
-            if (portfolioSelected) {
-              return <Portfolio></Portfolio>;
-            } else {
-              if (contactSelected) {
-                return <ContactForm></ContactForm>;
-              } else {
-                if (resumeSelected) {
-                  return <Resume></Resume>;
-                }
-              }
-            }
-          }
-        })()}
+        {navActiveSelected === "about" && <About></About>}
+        {navActiveSelected === "portfolio" && <Portfolio></Portfolio>}
+        {navActiveSelected === "contact" && <ContactForm></ContactForm>}
+        {navActiveSelected === "resume" && <Resume></Resume>}
       </main>
+      <Footer></Footer>
     </div>
   );
 }
