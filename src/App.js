@@ -1,42 +1,54 @@
-import React, { useState } from 'react';
-import Nav from './components/Nav';
-import About from './components/About';
-import Gallery from './components/Gallery';
-import ContactForm from './components/Contact';
+import React, { useState } from "react";
+import Nav from "./components/Nav";
+import About from "./components/About";
+import ContactForm from "./components/Contact";
 
 function App() {
-  const [categories] = useState([
-    {
-      name: 'commercial',
-      description: 'Photos of grocery stores, food trucks, and other commercial projects',
-    },
-    { name: 'portraits', description: 'Portraits of people in my life' },
-    { name: 'food', description: 'Delicious delicacies' },
-    { name: 'landscape', description: 'Fields, farmhouses, waterfalls, and the beauty of nature' },
-  ]);
-
-  const [currentCategory, setCurrentCategory] = useState(categories[0]);
-
   const [contactSelected, setContactSelected] = useState(false);
-
+  const [portfolioSelected, setPortfolioSelected] = useState(false);
+  const [resumeSelected, setResumeSelected] = useState(false);
   return (
     <div>
       <Nav
-        categories={categories}
-        setCurrentCategory={setCurrentCategory}
-        currentCategory={currentCategory}
+        resumeSelected={resumeSelected}
+        setResumeSelected={setResumeSelected}
+        portfolioSelected={portfolioSelected}
+        setPortfolioSelected={setPortfolioSelected}
         contactSelected={contactSelected}
         setContactSelected={setContactSelected}
       ></Nav>
       <main>
-        {!contactSelected ? (
+        {/* {contactSelected ? (
           <>
-            <Gallery currentCategory={currentCategory}></Gallery>
-            <About></About>
+            <ContactForm></ContactForm>
           </>
         ) : (
-          <ContactForm></ContactForm>
+          <About></About>
         )}
+        {portfolioSelected ? (
+          <>
+            <ContactForm></ContactForm>
+          </>
+        ) : (
+          <About></About>
+        )} */}
+        {(function () {
+          if (!contactSelected && !portfolioSelected && !resumeSelected) {
+            return <About></About>;
+          } else {
+            if (portfolioSelected) {
+              return <div>hello world</div>;
+            } else {
+              if (contactSelected) {
+                return <ContactForm></ContactForm>;
+              } else {
+                if (resumeSelected) {
+                  return <div>Its Resume Time</div>;
+                }
+              }
+            }
+          }
+        })()}
       </main>
     </div>
   );
