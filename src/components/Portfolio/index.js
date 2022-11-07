@@ -6,12 +6,12 @@ function Portfolio() {
       <h1 data-testid="h1tag">Portfolio</h1>
       <div class="web-apps-section content">
         <a
-          href="https://sspspencer.github.io/run-buddy/"
+          href="https://boiling-depths-73128.herokuapp.com//"
           target="_blank"
           class="web-app-container Run-buddy"
         >
           <div class="web-app-title">
-            <h4>Run-buddy</h4>
+            <h4>Rescue-Chow</h4>
           </div>
         </a>
         <a
